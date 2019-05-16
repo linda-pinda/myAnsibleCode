@@ -1,9 +1,0 @@
----
-# Attach a volume
-- name: attach a volume to host
-  os_server_volume:
-    state: present
-    server: '{{ item.server_name }}'
-    volume: '{{ item.volume_name }}'
-  loop: '{{ attachments }}'
-  register: os_s_v
