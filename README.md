@@ -6,7 +6,7 @@ This code has a combination of playbooks and variable files. It is a jumping off
 The first thing that needs to be edited is host_vars/nectar.yaml.
 
 ### Common vars
-You need to add your availability zone.
+You need to add your availability zone. Optionally, add any other variables you want available on every instance.
 
 ### Volumes
 
