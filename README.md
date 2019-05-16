@@ -103,5 +103,7 @@ I installed Ubuntu from the Windows App Store and loaded my files into the file 
 * Then, go into the run-nectar.sh bash script and change the name of the bash file from your-openstack-rc-filename.sh to the name of your OpenStack RC file
 * Navigate into the nectar folder while in Ubuntu, and run the bash script by typing ./run-nectar.sh.
 
+# More information
+
 I extensively used the Search bar in the Ansible documentation to find more information.
 https://docs.ansible.com/ansible/latest/index.html
