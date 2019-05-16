@@ -1,5 +1,5 @@
 # Project
-This code has a combination of playbooks and variable files. It is a jumping off point. It builds the basic structure of a cloud environment in the Nectar Research Cloud after which playbooks can be added for the automation of adding databases, websites, and any other program that can be pulled from github as code.
+This code has a combination of playbooks and variable files. It is a jumping off point. It builds the basic structure of a cloud environment in the Nectar Research Cloud after which playbooks can be added for the automation of adding things like databases, websites, or programs.
 
 # Host Variables
 
