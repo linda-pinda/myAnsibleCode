@@ -1,0 +1,26 @@
+---
+# Create an instance on NECTAR
+- name: Create instances on nectar
+  os_server:
+    name: '{{ item.instance_name }}'
+    image: '{{ item.instance_image }}'
+    key_name: '{{ item.instance_key_name }}'
+    flavor: '{{ item.instance_flavor }}'
+    availability_zone: '{{ availability_zone }}'
+    security_groups: '{{ sg_names }}'
+    auto_floating_ip: yes
+    wait: yes
+    timeout: 600
+    state: present
+  loop: '{{ instances }}'
+  register: os_instance
+ 
+#Get a list of instance IDs from the return value of os_instance, and ip addresses
+- name: Get a list of instance IDs and ip addresses
+  set_fact:
+    os_instance_ids: '{{ os_instance_ids|default([]) + [item.id] }}'
+    os_instance_ip: '{{ os_instance_ip|default([]) + [item.openstack.accessIPv4] }}' 
+  loop: '{{ os_instance.results }}'
+  
+- debug:
+    msg: '{{os_instance_ip[0]}}'
