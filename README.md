@@ -99,7 +99,7 @@ I installed Ubuntu from the Windows App Store and loaded my files into the file 
 * Log into Nectar, go to User –> OpenStack RC File.
 * Go to User –> Settings, and select Reset Password.
 * This password needs to be copied and pasted into the OpenStack RC file that was downloaded. I have changedthe code provided as follows:
-* I hashed the lines "read -sr OS_PASSWORD_INPUT" and "exportOS_PASSWORD=$OS_PASSWORD_INPUT", and instead, added "export OS_PASSWORD=’myPassword’"
+* I hashed the lines "read -sr OS_PASSWORD_INPUT" and "export OS_PASSWORD=$OS_PASSWORD_INPUT", and instead, added "export OS_PASSWORD=’myPassword’"
 * Then, go into the run-nectar.sh bash script and change the name of the bash file from your-openstack-rc-filename.sh to the name of your OpenStack RC file
 * Navigate into the nectar folder while in Ubuntu, and run the bash script by typing ./run-nectar.sh.
 
