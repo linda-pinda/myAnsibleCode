@@ -50,3 +50,55 @@ Here, I call the playbooks that I will describe in the Playbooks section. These 
 You can add playbooks to add more automation to your system, i.e. if you want to create a website on one or more of your instances, add docker, or CouchDB.
 
 # Playbooks
+
+In the folder roles, I have stored the different playbooks. 
+
+## Openstack-common
+
+This playbook installs dependencies on every instance that you create. The instance ids I used were for instances that already had python installed, on Ubutu. I installed pip, vim, updated pip, installed the openstack software development kit, and curl.
+
+### Openstacksdk
+
+The openstack software development kit is necessary to be able to call the openstack functions necessary to execute the playbooks.
+
+## Openstack-images
+
+This playbook retrieves the available Openstack images. The image I used had Ubuntu and python already installed, so that I didn't need to go through the painful process of setting up the instance myself.
+
+### Name
+
+What you write after - name: is helpful when diagnosing issues. When running this stack, there will be a separator for each execution, where the text after - name: will also be displayed. If anything goes wrong, you will then know exactly where it went wrong.
+
+### Loop
+
+Setting a loop means that you can use these playbooks for more than one implementation of anything. Here, we loop through openstack images. The curly brackets mean that you are calling a variable from outside the specific playbook. If you have item. in your curly brackets, this means that you are calling a variable from instide the implementation that you're looping through.
+
+## Openstack-instance
+
+This is where you create your instances. We call the openstack function os_server, which has various possible variables defined (https://docs.ansible.com/ansible/latest/modules/os_server_module.html?highlight=os_server)
+
+Notice that we are looping through instanes here, as defined in host_vars/nectar.yaml. There we have defined an instance_name, instance_imge, instane_keyname and instance_flavor variable for each instance. This is why you only need to change the host_vars/nectar.yaml file to be able to add or delete instances.
+
+Here, I have stored the instance ids and ip addresses so that they can be easily called for use in different implementations. I looped through os_instance.results. This was defined in register: os_instance which means that the information regarding these instances is stored in the os_instance variable and this information can be used. 
+
+I have set my debug message to print out the first ip address. Often, being able to access this ip address is important to add applications to the instances. To print out more ip addresses, just add plus and then {{ os_instance_ip[1] }} inside the apostrophe's.
+
+## Openstack-security-group
+
+In any company, security is everyone's responsibility. Here, Security groups are created, and a list of names have been saved. Then, the rules are created.
+
+## Openstack-volume.
+
+Here, the volumes are created. Setting wait: yes means that nothing else happens until the volume is created. Timeout: 600 means that this waiting is limited to 600 seconds.
+
+
+# How to run
+
+I installed Ubuntu from the Windows App Store and loaded my files into the file system there to run it. Be aware when accessing your computers C-drive from Ubuntu, you need to mount it using /mnt/c/ as the beginning of the file path.
+
+* Log into Nectar, go to User –> OpenStack RC File.
+* Go to User –> Settings, and select Reset Password.
+* This password needs to be copied and pasted into the OpenStack RC file that was downloaded. I have changedthe code provided as follows:
+* I hashed the lines "read -sr OS_PASSWORD_INPUT" and "exportOS_PASSWORD=$OS_PASSWORD_INPUT", and instead, added "export OS_PASSWORD=’myPassword’"
+* Then, go into the run-nectar.sh bash script and change the name of the bash file from your-openstack-rc-filename.sh to the name of your OpenStack RC file
+* Navigate into the nectar folder while in Ubuntu, and run the bash script by typing ./run-nectar.sh.
