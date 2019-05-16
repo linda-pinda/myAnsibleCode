@@ -102,3 +102,6 @@ I installed Ubuntu from the Windows App Store and loaded my files into the file 
 * I hashed the lines "read -sr OS_PASSWORD_INPUT" and "exportOS_PASSWORD=$OS_PASSWORD_INPUT", and instead, added "export OS_PASSWORD=’myPassword’"
 * Then, go into the run-nectar.sh bash script and change the name of the bash file from your-openstack-rc-filename.sh to the name of your OpenStack RC file
 * Navigate into the nectar folder while in Ubuntu, and run the bash script by typing ./run-nectar.sh.
+
+I extensively used the Search bar in the Ansible documentation to find more information.
+https://docs.ansible.com/ansible/latest/index.html
